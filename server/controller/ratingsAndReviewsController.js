@@ -2,7 +2,8 @@ const axios = require('axios');
 const auth_token = require('../../authorization.config.js').token;
 const calc = require('./calculator.js')
 
-const URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo';
+//const URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo';
+const URL = 'http://54.88.51.112:3001'
 const reviewsURL = `${URL}/reviews`;
 const metaReviewsURL = `${URL}/reviews/meta`;
 
@@ -21,7 +22,9 @@ const ratingsAndReviewsController = {
   getProductReviews: params => {
     return new Promise((resolve, reject) => {
       let queryParams = Object.assign({}, options);
+
       queryParams.params = params;
+      console.log("here",queryParams.params);
       axios.get(reviewsURL, queryParams)
         .then(res => resolve(res.data))
         .catch(err=> reject(err))
